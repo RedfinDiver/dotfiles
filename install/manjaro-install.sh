@@ -74,6 +74,7 @@ code --install-extension ms-azuretools.vscode-docker
 code --install-extension lextudio.restructuredtext
 code --install-extension ziishaned.livereload
 code --install-extension skyapps.fish-vscode
+code --install-extension mikestead.dotenv
 
 ##########################################
 ############# Applications ###############
