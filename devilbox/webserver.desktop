@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Icon=applications-development
+Name=Webserver
+Exec=/home/markus/Projekte/dotfiles/devilbox/webserver.sh
+Terminal=true
+Hidden=false
+Categories=Development
+Comment=Start und Stop der devilbox Entwicklungsumgebung

@@ -1,0 +1,10 @@
+version: '2.3'
+
+services:
+  php:
+    volumes:
+      - /home/markus/Projekte/tkdclub/:/home/markus/Projekte/tkdclub/
+
+  httpd:
+    volumes:
+      - /home/markus/Projekte/tkdclub/:/home/markus/Projekte/tkdclub/
