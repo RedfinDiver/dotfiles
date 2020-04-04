@@ -5,7 +5,7 @@
 devilbox_dir=/home/markus/Projekte/devilbox
 devilbox_cfg=/home/markus/Projekte/dotfiles/devilbox
 
-# check for existing devilbox repo, clones it when not existing
+# check for existing devilbox repo, clone it when not existing
 if [ ! -d ~/Projekte/devilbox ]
 then
     # clone the repo first

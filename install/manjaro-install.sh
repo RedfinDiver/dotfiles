@@ -1,31 +1,32 @@
 ##########################################
-### Custom Manjaro installation script ###
+#  Custom Manjaro installation script    #
 ##########################################
 
 # after installation first update system
 sudo pacman -Syu --noconfirm
 
+##########################################
+#     do this section manually           #
+#  before or after this script executed  #
+##########################################
+
 # prepare for changing uid and gid for main user
 # this is necassary for nfs access on the nas
-sudo useradd -m -G wheel test
-sudo passwd test 
+##-> sudo useradd -m -G wheel test
+##-> sudo passwd test 
+##-> sudo visudo /etc/sudoers # uncomment line for all wheelers to become sudo
+
+# login as test and do
+##-> sudo groupadd --gid 100 nfs
+##-> sudo usermod -u 1028 -g 100 markus
+##-> sudo find / -user 1000 -exec chown 1028 {} \;
+##-> sudo find / -group 1000 -exec chgrp 100 {} \;
+
+# login again as user markus and do
+##-> sudo userdel -r test
 
 ##########################################
-########### do this manually #############
-## before or after this script executed ##
-##########################################
-
-# sudo visudo /etc/sudoers # uncomment line for all wheelers to become sudo
-
-########## login as test and do ##########
-# sudo groupadd --gid 100 nfs
-# sudo usermod -u 1028 -g 100 markus
-# sudo find / -user 1000 -exec chown 1028 {} \;
-# sudo find / -group 1000 -exec chgrp 100 {} \;
-# sudo userdel -r test
-
-##########################################
-###### Install and configure autofs ######
+#     Install and configure autofs       #
 ##########################################
 
 sudo pacman -S autofs --noconfirm 
@@ -39,24 +40,27 @@ sudo systemctl start autofs.service
 sudo systemctl enable autofs.service
 
 ##########################################
-####### Install development tools ########
+#    Install and configure development   #
 ##########################################
 
-sudo pacman -S code ant docker docker-compose python-pip fish --noconfirm
-curl -L https://get.oh-my.fish | fish
+sudo pacman -S code ant docker docker-compose python-pip --noconfirm
+
+# python
 sudo pip install pipenv
+
+# git
 git config --global user.name "Redfindiver"
 git config --global user.email "redfindiver@gmail.com"
 
-# install ant tools
+# ant
 pamac build apache-ant-contrib
 cd ~/Downloads
-wget ttps://sourceforge.net/projects/xmltask/files/xmltask/1.16/xmltask.jar
+wget https://sourceforge.net/projects/xmltask/files/xmltask/1.16/xmltask.jar
 sudo cp xmltask.jar /usr/share/java/apache-ant/xmltask.jar
 rm xmltask.jar
 sudo archlinux-java set java-13-openjdk
 
-# make docker work
+# docker
 sudo usermod -aG docker markus
 sudo systemctl start docker
 sudo systemctl enable docker
@@ -77,10 +81,21 @@ code --install-extension skyapps.fish-vscode
 code --install-extension mikestead.dotenv
 
 ##########################################
-############# Applications ###############
+#             Applications               #
 ##########################################
 
-sudo pacman -S gimp gimp-help-de chromium handbrake --noconfirm
+sudo pacman -S \
+gimp gimp-help-de \
+chromium \
+handbrake \
+fish \
+inkscape --noconfirm
+
+# fish shell customisation
+sudo chsh -s /usr/bin/fish markus
+curl -L https://get.oh-my.fish | fish
+omf install simple-ass-prompt
+ln -s /home/markus/Projekte/dotfiles/fish/myabbr.fish /home/markus/.config/fish/conf.d/myabbr.fish
 
 # flatpaks
 flatpak install flathub com.bitwarden.desktop
@@ -91,12 +106,11 @@ pamac build gimp-plugin-saveforweb
 pamac build synology-drive
 pamac build arronax
 
-
 # uninstall stuff
 sudo pacman -R evolution --noconfirm
 
 ##########################################
-##### Themes and other customisation #####
+#     Themes and other customisation     #
 ##########################################
 
 # install themes
@@ -126,7 +140,3 @@ gsettings set org.gnome.shell favorite-apps "['firefox.desktop', 'chromium.deskt
 # hosts file settings
 echo "192.168.178.100  nas" | sudo tee -a /etc/hosts > /dev/null
 echo "w014834e.kasserver.com allinkl" | sudo tee -a /etc/hosts > /dev/null
-
-# symlinking stuff
-ln -s /home/markus/Projekte/dotfiles/devilbox/webserver.desktop /home/markus/.local/share/applications/webserver.desktop
-ln -s /home/markus/Projekte/dotfiles/fish/myabbr.fish /home/markus/.config/fish/conf.d/myabbr.fish
