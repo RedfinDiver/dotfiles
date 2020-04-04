@@ -128,4 +128,4 @@ echo "w014834e.kasserver.com allinkl" | sudo tee -a /etc/hosts > /dev/null
 
 # symlinking stuff
 ln -s /home/markus/Projekte/dotfiles/devilbox/webserver.desktop /home/markus/.local/share/applications/webserver.desktop
-ln -s /home/markus/Projekte/fish/myabbr.fish /home/markus/.config/fish/config.d/myabbr.fish
+ln -s /home/markus/Projekte/dotfiles/fish/myabbr.fish /home/markus/.config/fish/conf.d/myabbr.fish
