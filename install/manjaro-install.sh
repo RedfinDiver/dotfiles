@@ -89,7 +89,8 @@ gimp gimp-help-de \
 chromium \
 handbrake \
 fish \
-inkscape --noconfirm
+inkscape \
+keepassxc --noconfirm
 
 # fish shell customisation
 sudo chsh -s /usr/bin/fish markus
