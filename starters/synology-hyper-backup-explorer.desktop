@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Icon=deja-dup
+Name=Synology Hyper Backup Explorers
+Exec=synology-hyper-backup-explorer
+Terminal=false
+Hidden=false
+Categories=System
+Comment=Synology Hyper Backup Explorer
