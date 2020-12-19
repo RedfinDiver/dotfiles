@@ -23,7 +23,7 @@ if [ -z $running ]
 then
     # copy configurations
     cp $devilbox_cfg/.env $devilbox_dir/.env
-    cp $devilbox_cfg/xdebug.ini $devilbox_dir/cfg/php-ini-7.2/xdebug.ini
+    cp $devilbox_cfg/xdebug.ini $devilbox_dir/cfg/php-ini-7.3/xdebug.ini
     cp $devilbox_cfg/docker-compose.override.yml $devilbox_dir/docker-compose.override.yml
 
     # start webserver, the first time it takes a while!
