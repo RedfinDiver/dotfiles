@@ -92,20 +92,14 @@ fish \
 inkscape \
 keepassxc --noconfirm
 
-# fish shell customisation
-sudo chsh -s /usr/bin/fish markus
-curl -L https://get.oh-my.fish | fish
-omf install simple-ass-prompt
-ln -s /home/markus/Projekte/dotfiles/fish/myabbr.fish /home/markus/.config/fish/conf.d/myabbr.fish
-
 # flatpaks
-flatpak install flathub com.bitwarden.desktop
-flatpak install flathub com.skype.Client
+flatpak install flathub com.bitwarden.desktop --noninteractive
+flatpak install flathub com.skype.Client --noninteractive
 
 # AUR builds
-pamac build gimp-plugin-saveforweb
-pamac build synology-drive
-pamac build arronax
+pamac build gimp-plugin-saveforweb --no-confirm
+pamac build synology-drive --no-confirm
+pamac build arronax --no-confirm
 
 # uninstall stuff
 sudo pacman -R evolution --noconfirm
@@ -118,16 +112,25 @@ sudo pacman -R evolution --noconfirm
 sudo pacman -S moka-icon-theme --noconfirm
 
 # gesettings, dconf watch / is your friend ;-)
-gsettings set org.gnome.shell.extensions.user-theme name "Matcha-dark-azul"
+
 gsettings set org.gnome.desktop.interface gtk-theme "Matcha-dark-azul"
 gsettings set org.gnome.desktop.interface cursor-theme "Xcursor-breeze-snow"
 gsettings set org.gnome.desktop.interface icon-theme "Moka"
-
 gsettings set org.gnome.desktop.interface font-name "Noto Sans 10"
 gsettings set org.gnome.desktop.interface document-font-name "Sans 10"
 gsettings set org.gnome.desktop.interface monospace-font-name "Hack 10"
 gsettings set org.gnome.desktop.wm.preferences titlebar-font "Cantarell Bold 10"
 gsettings set org.gnome.desktop.input-sources xkb-options "['caps:none']"
+gsettings set org.gnome.desktop.background.picture-options  "zoom"
+gsettings set org.gnome.desktop.background.color-shading-type  "solid"
+gsettings set org.gnome.desktop.background.picture-uri  "file:///usr/share/backgrounds/gnome/adwaita-timed.xml"
+gsettings set org.gnome.desktop.background.primary-color  "#3465a4"
+gsettings set org.gnome.desktop.background.secondary-color  "#000000"
+gsettings set org.gnome.desktop.screensaver.color-shading-type  "solid"
+gsettings set org.gnome.desktop.screensaver.picture-options  "zoom"
+gsettings set org.gnome.desktop.screensaver.picture-uri  "file:///usr/share/backgrounds/gnome/adwaita-timed.xml"
+gsettings set org.gnome.desktop.screensaver.primary-color  "#3465a4"
+gsettings set org.gnome.desktop.screensaver.secondary-color  "#000000"
 
 gsettings set org.gnome.nautilus.preferences default-folder-viewer "list-view"
 gsettings set org.gnome.nautilus.list-view default-zoom-level "small"
@@ -136,8 +139,21 @@ gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "[
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ name 'terminal'
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ command 'gnome-terminal'
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ binding '<Primary><Alt>t'
+
+gsettings set org.gnome.shell.extensions.user-theme name "Matcha-dark-azul"
 gsettings set org.gnome.shell favorite-apps "['firefox.desktop', 'chromium.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.tweaks.desktop', 'code-oss.desktop', 'com.bitwarden.desktop.desktop', 'webserver.desktop']"
+gsettings set org.gnome.shell.extensions.dash-to-dock extend-height "true"
+gsettings set org.gnome.shell.extensions.dash-to-dock apply-custom-theme "true"
 
 # hosts file settings
 echo "192.168.178.100  nas" | sudo tee -a /etc/hosts > /dev/null
 echo "w014834e.kasserver.com allinkl" | sudo tee -a /etc/hosts > /dev/null
+
+# fish shell customisation
+sudo chsh -s /usr/bin/fish markus
+curl -L https://get.oh-my.fish | fish
+/bin/bash
+omf install simple-ass-prompt
+ln -s /home/markus/Projekte/dotfiles/fish/myabbr.fish /home/markus/.config/fish/conf.d/myabbr.fish
+
+echo "everything done"
