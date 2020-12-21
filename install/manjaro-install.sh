@@ -35,7 +35,9 @@ echo "/home/markus/NAS    /etc/autofs/auto.synology --ghost" | sudo tee -a /etc/
 sudo touch /etc/autofs/auto.synology
 echo "markus -fstype=nfs,rw,retry=0 192.168.178.20:/volume1/homes/markus" | sudo tee -a /etc/autofs/auto.synology > /dev/null
 echo "share -fstype=nfs,rw,retry=0 192.168.178.20:/volume1/share" | sudo tee -a /etc/autofs/auto.synology > /dev/null
-echo "video -fstype=nfs,rw,retry=0 192.168.178.20:/volume1/video" | sudo tee -a /etc/autofs/auto.synology > /dev/null
+echo "docker -fstype=nfs,rw,retry=0 192.168.178.20:/volume1/docker" | sudo tee -a /etc/autofs/auto.synology > /dev/null
+echo "ebooks -fstype=nfs,rw,retry=0 192.168.178.20:/volume1/ebooks" | sudo tee -a /etc/autofs/auto.synology > /dev/null
+echo "web -fstype=nfs,rw,retry=0 192.168.178.20:/volume1/web" | sudo tee -a /etc/autofs/auto.synology > /dev/null
 sudo systemctl start autofs.service
 sudo systemctl enable autofs.service
 
