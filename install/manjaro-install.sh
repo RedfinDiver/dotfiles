@@ -42,6 +42,29 @@ sudo systemctl start autofs.service
 sudo systemctl enable autofs.service
 
 ##########################################
+#           configure ssh hosts          #
+##########################################
+
+# check for existing .ssh directory
+if [ ! -d "/home/markus/.ssh" ]; then
+    mkdir "/home/markus/.ssh" && chmod 700 "/home/markus/.ssh" && \
+    touch "/home/markus/.ssh/config" && chmod 644 "/home/markus/.ssh/config"
+fi
+
+# allinkl
+echo -en '\n' >> "/home/markus/.ssh/config"
+echo -e "Host allinkl" >> "/home/markus/.ssh/config"
+echo -e "\tHostName w014834e.kasserver.com" >> "/home/markus/.ssh/config"
+echo -e "\tUser ssh-w014834e" >> "/home/markus/.ssh/config"
+
+# nas
+echo -en '\n' >> "/home/markus/.ssh/config"
+echo -e "Host nas" >> "/home/markus/.ssh/config"
+echo -e "\tHostName 192.168.178.20" >> "/home/markus/.ssh/config"
+echo -e "\tUser markus" >> "/home/markus/.ssh/config"
+echo -e "\tciphers=aes128-cbc" >> "/home/markus/.ssh/config"
+
+##########################################
 #    Install and configure development   #
 ##########################################
 
